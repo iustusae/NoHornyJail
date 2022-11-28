@@ -5,12 +5,14 @@
 package GUI;
 
 import GUI.ColorChooser.ColorChooser;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
+import ReadingAndWriting.FileIO;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -41,12 +43,18 @@ public class GUIWrapper extends javax.swing.JFrame{
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jFileChooser1 = new javax.swing.JFileChooser();
+        jButton2 = new javax.swing.JButton();
 
         jInternalFrame1.setVisible(true);
 
@@ -61,45 +69,241 @@ public class GUIWrapper extends javax.swing.JFrame{
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.addTab("tab1", jTabbedPane2);
+        jLabel3.setText("Get the ability to play osu! everywhere");
 
-        jButton1.setText("Set the color for your osu! beatmap(s) background(s)");
+        jLabel4.setText("Select your mode:");
+
+        jToggleButton2.setText("Color ");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton3.setText("Image");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Customize !");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("START CLEANING THINE EYES");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jTabbedPane3.addTab("", jButton1);
 
-        jTabbedPane1.addTab("Color Chooser", jTabbedPane3);
+        jButton2.setText("Select your OSU! Beatmap Folder Path:");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jFileChooser1.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
-        jTabbedPane4.addTab("Choose the image to replace your osu! beatmaps(s) background(s)", jFileChooser1);
-
-        jTabbedPane1.addTab("File Chooser", jTabbedPane4);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jToggleButton3)
+                            .addComponent(jToggleButton2)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jButton1))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(97, 97, 97))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(22, 22, 22)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton3)
+                .addGap(31, 31, 31)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(65, 65, 65)
+                .addComponent(jButton1)
+                .addGap(143, 143, 143))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        jButton3.setEnabled(false);
+        if(jToggleButton2.isSelected()){
+        
+            jToggleButton3.setEnabled(false);
+            try {
+                FileIO.WriteToFile(GLOBAL_VARS.GLOBALVARS.PATH_TO_STATUS_FILE, "color");
+            } catch (IOException ex) {
+                Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButton3.setText("Customize my Color!");
+            jButton3.setEnabled(true);
+                   
+        }
+        else{
+            jToggleButton3.setEnabled(true);
+            try {
+                FileIO.WriteToFile(GLOBAL_VARS.GLOBALVARS.PATH_TO_STATUS_FILE, "");
+            } catch (IOException ex) {
+                Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButton3.setText("Customize!");
+            jButton3.setEnabled(false);
+        }
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        // TODO add your handling code here:
+        jButton3.setEnabled(false);
+        if(jToggleButton3.isSelected()){
+        
+            jToggleButton2.setEnabled(false);
+            try {
+                FileIO.WriteToFile(GLOBAL_VARS.GLOBALVARS.PATH_TO_STATUS_FILE, "image");
+            } catch (IOException ex) {
+                Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButton3.setText("Customize my Image Choice!");
+            jButton3.setEnabled(true);
+                   
+        }
+        else{
+            jToggleButton2.setEnabled(true);
+            try {
+                FileIO.WriteToFile(GLOBAL_VARS.GLOBALVARS.PATH_TO_STATUS_FILE, "");
+            } catch (IOException ex) {
+                Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButton3.setText("Customize!");
+            jButton3.setEnabled(false);
+        }
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String status = FileIO.readOneLine(new File(GLOBAL_VARS.GLOBALVARS.PATH_TO_STATUS_FILE));
+        
+        if(status.equals("color")){
+            new ColorChooser();
+            try {
+                jLabel1.setText("R: " + FileIO.RainbowFileReader().get(0) + "G: " + FileIO.RainbowFileReader().get(1) + "B: " + FileIO.RainbowFileReader().get(2));
+            } catch (IOException ex) {
+                Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    
+        }else if(status.equals("image")){
+        
+            JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        jfc.setDialogTitle("Choose the Image's file directory: ");
+        jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        jfc.setFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+        int returnValue = jfc.showSaveDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            if (jfc.getSelectedFile().isFile()) {
+                System.out.println("You selected the directory: " + jfc.getSelectedFile());
+                try {
+                    FileIO.WriteToFile(GLOBAL_VARS.GLOBALVARS.PATH_TO_DIR_FILE, jfc.getSelectedFile().getAbsolutePath());
+                } catch (IOException ex) {
+                    Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                jLabel1.setText("Selected File: "+jfc.getSelectedFile().getAbsolutePath());
+                }
+            
+            
+
+            }
+        
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ColorChooser cc = new ColorChooser();
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        jfc.setDialogTitle("Choose the OSU! BEATMAPS file directory: ");
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        int returnValue = jfc.showSaveDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            if (jfc.getSelectedFile().isFile()) {
+                System.out.println("You selected the directory: " + jfc.getSelectedFile());
+                try {
+                    FileIO.WriteToFile(GLOBAL_VARS.GLOBALVARS.PATH_TO_OSU_FILE, jfc.getSelectedFile().getAbsolutePath());
+                } catch (IOException ex) {
+                    Logger.getLogger(GUIWrapper.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                jButton2.setText("OSU! Path set !");
+                }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,12 +345,18 @@ public class GUIWrapper extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
 
    

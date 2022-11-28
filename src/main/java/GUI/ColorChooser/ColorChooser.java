@@ -1,7 +1,12 @@
 package GUI.ColorChooser;
 
 
+import GLOBAL_VARS.GLOBALVARS;
+import ReadingAndWriting.FileIO;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +27,7 @@ public class ColorChooser implements ChangeListener{
 		window.setLayout(null);
 		
 		colorChooserPanel = new JPanel();
-		colorChooserPanel.setBounds(100, 50, 600, 350);
+		colorChooserPanel.setBounds(100, 50, 650, 350);
 		colorChooserPanel.setBackground(Color.black);
 		window.add(colorChooserPanel);
 		
@@ -50,10 +55,20 @@ public class ColorChooser implements ChangeListener{
 	}
 	
 	public void stateChanged(ChangeEvent e){
-		
+            try {
+                FileIO.CreateMainFiles();
+            } catch (IOException ex) {
+                Logger.getLogger(ColorChooser.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		Color newColor = cc.getColor();
 		colorPanel.setBackground(newColor);
                 System.out.println(newColor.getBlue());
+                String payload =  String.valueOf(newColor.getRed()) + "\n"+ String.valueOf(newColor.getGreen())+ "\n" + String.valueOf(newColor.getBlue());
+            try {
+                FileIO.WriteToFile(GLOBALVARS.PATH_TO_COLOR_FILE, payload);
+            } catch (IOException ex) {
+                Logger.getLogger(ColorChooser.class.getName()).log(Level.SEVERE, null, ex);
+            }
 	}	
 }
 
